@@ -31,25 +31,25 @@ def detect_gestures(hand_landmarks):
     thumb_x, thumb_y = thumb_tip.x, thumb_tip.y
 
     # Map normalized coordinates to screen size (optional)
-    screen_width = 640  # Adjust based on your frame size
-    screen_height = 480
+    screen_width = 200  # Adjust based on your frame size
+    screen_height = 200
     x, y = x * screen_width, y * screen_height
     thumb_x, thumb_y = thumb_x * screen_width, thumb_y * screen_height
 
     # Detect Swipe Gestures
     if prev_x != 0 and prev_y != 0:  # Ensure previous frame data exists
         if time.time() - last_gesture_time > gesture_cooldown:  # Cooldown check
-            if x - prev_x > 30:  # Swipe Right
+            if x - prev_x > 50:  # Swipe Right
                 print("Swipe Right Gesture Detected!")
                 last_gesture_time = time.time()
-            elif prev_x - x > 30:  # Swipe Left
+            elif prev_x - x > 50:  # Swipe Left
                 print("Swipe Left Gesture Detected!")
                 last_gesture_time = time.time()
-            elif prev_y - y > 30:  # Swipe Down
+            elif prev_y - y > 50:  # Swipe Down
                 print("Swipe Down Gesture Detected! Lowering volume.")
                 lower_volume()
                 last_gesture_time = time.time()
-            elif y - prev_y > 30:  # Swipe Up
+            elif y - prev_y > 50:  # Swipe Up
                 print("Swipe Up qqGesture Detected! Increasing volume.")
                 increase_volume()
                 last_gesture_time = time.time()
